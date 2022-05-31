@@ -1,4 +1,4 @@
-# Sc2Mol 
+# Sc2Mol: A Scaffold-based Two-step Molecule Generator with Variational Autoencoder and Transformer
 
 ## Requirements
 python 3.7  
