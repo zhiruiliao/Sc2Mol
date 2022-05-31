@@ -52,8 +52,8 @@ if __name__ == '__main__':
     model = vaetransformer.VAETransformer(
         input_max_len=args.input_max_len, input_vocab_size=28,
         target_max_len=args.target_max_len, target_vocab_size=28,
-        d_model=512, num_vae_layers=3, vae_kernel_size=3, latent_dim=128, pooling='max',
-        num_transformer_layers=3, num_heads=4, dff=2048, dropout_rate=0.1)
+        d_model=256, num_vae_layers=3, vae_kernel_size=3, latent_dim=64, pooling='max',
+        num_transformer_layers=3, num_heads=4, dff=1024, dropout_rate=0.1)
     
     checkpoint_path = os.path.join('.', 'checkpoints', args.ckpt_path)
     os.makedirs(checkpoint_path, exist_ok=True)
