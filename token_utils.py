@@ -189,7 +189,7 @@ if __name__ == "__main__":
     print(f"core set size: {len(core_set)}, chain_set size: {len(chain_set)}")
     
     
-    tokenizer = Tokenizer(max_len=args.max_len, init_vocab_txt='vocab.txt'))
+    tokenizer = Tokenizer(max_len=args.max_len, init_vocab_txt='vocab.txt')
     print(tokenizer)
     
     tokenizer.tokenize(args.input[:-4] + '_target.txt', args.save_path, args.split)
