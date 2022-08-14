@@ -4,9 +4,9 @@ import time
 import numpy as np
 import tensorflow as tf
 import transformer
-import utils_teaching
+import utils
 import vae
-import vaetransformer_teaching
+import vaetransformer
 
 import token_utils
 
@@ -27,11 +27,11 @@ if __name__ == '__main__':
     parser.add_argument('--std', type=float, default=1.0)
     args = parser.parse_args()
     print(args)
-    learning_rate = utils_teaching.CustomLearningRateSchedule(d_model=256, warmup_steps=args.lr_warmup)
+    learning_rate = utils.CustomLearningRateSchedule(d_model=256, warmup_steps=args.lr_warmup)
     optimizer = tf.keras.optimizers.Adam(learning_rate, beta_1=0.9, beta_2=0.98,
                                          epsilon=1e-9)
     
-    model = vaetransformer_teaching.VAETransformer(
+    model = vaetransformer.VAETransformer(
         input_max_len=args.max_len, input_vocab_size=28,
         target_max_len=args.max_len, target_vocab_size=28,
         d_model=256, num_vae_layers=3, vae_kernel_size=3, latent_dim=64, pooling='max',
