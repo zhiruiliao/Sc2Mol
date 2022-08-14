@@ -74,8 +74,6 @@ if __name__ == '__main__':
         del z_mean
         del z_log_var
         z_batch = z_batch.numpy()
-        
-        np.save(f"z_test/test_z_ckpt25_{batch_i}.npy", z_batch)
 
         for i in range(len(z_batch)):
             zi = z_batch[i:i+1, :]
