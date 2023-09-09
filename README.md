@@ -7,6 +7,9 @@ rdkit >= 2020.03.2.0
 pandas >= 1.0.3  
 numpy >= 1.19.2 
 
+Make sure CUDA is in your path before running scripts:
+`export PATH="${PATH}:/usr/local/nvidia/bin:/usr/local/cuda/bin"` (may need to be edited if yours is located elsewhere)
+
 ## Data
 See `data` fold to get data and preprocess data.
 
