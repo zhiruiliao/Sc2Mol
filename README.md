@@ -1,6 +1,6 @@
 # Sc2Mol: A Scaffold-based Two-step Molecule Generator with Variational Autoencoder and Transformer
 ## Recent update
-Code is modified to support batch random generation. Much more faster!
+2023-09-11:  Code is modified to support batch random generation. Much more faster!
 
 ## Requirements
 python 3.7  
@@ -31,4 +31,4 @@ Zhirui Liao, Lei Xie, Hiroshi Mamitsuka, Shanfeng Zhu, Sc2Mol: a scaffold-based 
 Please feel free to send bug reports or questions to Zhirui Liao: zrliao19@fudan.edu.cn and Prof. Shanfeng Zhu: zhusf@fudan.edu.cn
 
 ## Declaration
-It is free for non-commercial use. For commercial use, please contact Zhirui Liao and Prof. Shanfeng Zhu (zhusf@fudan.edu.cn).
+It is free for non-commercial use. For commercial use, please contact with Zhirui Liao and Prof. Shanfeng Zhu (zhusf@fudan.edu.cn).
