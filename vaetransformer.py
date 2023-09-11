@@ -127,25 +127,23 @@ class VAETransformer(tf.keras.models.Model):
         return z_mean, z_log_var, z, mid_output
     
     def sample_from_gaussian(self, z):
-        assert tf.shape(z)[0] == 1, "Currently batch sampling is not supported."
-        
+        "Congratulations! Batch sampling now has been supported."
+        batch_size = tf.shape(z)[0]
         vae_output = self.vae_decoder(z)
         
         inp = tf.argmax(vae_output, axis=-1)
+        
         enc_padding_mask = utils.create_padding_mask(inp)
         dec_padding_mask = utils.create_padding_mask(inp)
         
-        # `[1, input_length, input_vocab_size]`
-        inp_one_hot = tf.one_hot(inp, depth=self.target_vocab_size)
-        enc_output = self.transformer_encoder(inp_one_hot, enc_padding_mask, training=False)
+        # `[batch_size, input_length, input_vocab_size]`
+        inp_one_hot = tf.one_hot(inp, depth=self.input_vocab_size)
         
+        enc_output = self.transformer_encoder(inp_one_hot, enc_padding_mask, training=False)
         # start is [SOS] (1)
         # end is [EOS] (2)
-        start = 1
-        end = 2
-        output = tf.convert_to_tensor([start], dtype=tf.int64)
-        # `[1, current_length]`
-        output = tf.expand_dims(output, 0)
+        # `[batch_size, current_length]`
+        output = tf.ones([batch_size, 1], dtype=tf.int64)
         for i in range(self.target_max_len):
             look_ahead_mask = utils.create_look_ahead_mask(tf.shape(output)[1])
             dec_target_padding_mask = utils.create_padding_mask(output)
@@ -155,13 +153,8 @@ class VAETransformer(tf.keras.models.Model):
             output, enc_output, look_ahead_mask, dec_padding_mask, training=False)
             
             predictions = self.final_layer(dec_output)
-            predictions = predictions[:, -1:, :]
-            
-            predicted_id = tf.argmax(predictions, axis=-1)
-            
+            predictions = predictions[:, -1:, :]           
+            predicted_id = tf.argmax(predictions, axis=-1)            
             output = tf.concat([output, predicted_id], axis=-1)
-            
-            if predicted_id == end:
-                break
-        
+
         return output, attention_weights_dict
