@@ -1,4 +1,6 @@
 # Sc2Mol: A Scaffold-based Two-step Molecule Generator with Variational Autoencoder and Transformer
+## Recent update
+Code is modified to support batch random generation. Much more faster!
 
 ## Requirements
 python 3.7  
