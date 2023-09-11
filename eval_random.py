@@ -52,18 +52,18 @@ if __name__ == '__main__':
         np.random.seed(args.seed)
     z = np.random.normal(loc=args.mean, scale=args.std, size=(args.num_sample, 64))
     
-    results = []
-    for i in range(args.num_sample):
-        zi = z[i:i+1, :]
-        pred, _ = model.sample_from_gaussian(zi)
-        pred = pred.numpy().squeeze()
-        results.append(pred)
+    tic1 = time.time()
+    
+    pred, _ = model.sample_from_gaussian(z)
+    pred = pred.numpy().squeeze()
+    tic2=time.time()
+    print(f" Sample time: {tic2 - tic1 :.3f} s")
+    
     fout = open(args.output, 'w')
     print("SMILES", file=fout)
     for i in range(args.num_sample):
-        pred = results[i]
-        pred = tokenizer.ids_to_chars(pred)
-        pred = token_utils.single_to_multi(pred)
-        print(pred, file=fout)
+        pred_i = tokenizer.ids_to_chars_for_inference(pred[i])
+        pred_i = token_utils.single_to_multi(pred_i)
+        print(pred_i, file=fout)
     fout.close()
     
