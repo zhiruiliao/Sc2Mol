@@ -78,6 +78,27 @@ class Tokenizer(object):
             return "".join(chars)
         else:
             return chars
+
+    def ids_to_chars_for_inference(self, ids, join=True, clean=True):
+        chars = []
+        for i in range(len(ids)):
+            char = self.idx_to_token[ids[i]]
+            if clean:
+                if char == '[SOS]':
+                    pass
+                elif char == '[EOS]':
+                    break
+                elif char in ['[PAD]', '[UNK]']:
+                    pass
+                else:
+                    chars += [char]
+            else:
+                chars += [char]
+
+        if join:
+            return "".join(chars)
+        else:
+            return chars  
     
     def tokenize(self, input_txt, save_path, split=1):
         with open(os.path.join(save_path, input_txt)) as fin:
