@@ -306,7 +306,6 @@ class Decoder(layers.Layer):
             "Output dimension": self.d_model,
             "Num heads": self.num_heads,
             "Feed forward dimension": self.dff,
-            "Input vocab size": self.input_vocab_size,
             "Target vocab size": self.target_vocab_size,
             "Max target length": self.maximum_position_encoding,
             "Dropout rate": self.dropout_rate
