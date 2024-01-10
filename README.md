@@ -1,6 +1,6 @@
 # Sc2Mol: A Scaffold-based Two-step Molecule Generator with Variational Autoencoder and Transformer
 ## Recent update
-2024-01-10: Fix a bug in `transformer.py`, which may cause error when `get_config` method is called.
+2024-01-10: Fix a bug in `transformer.py`, which may cause error when `get_config` method is called.  
 2023-09-11:  Code is modified to support batch random generation. Much more faster!
 
 ## Requirements
